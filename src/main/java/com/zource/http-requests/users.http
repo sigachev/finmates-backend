@@ -1,12 +1,14 @@
 ### Basic authorization.
 
+
+
 GET http://{{host}}:{{port}}/api/user/login
 Authorization: Basic {{username}} {{password}}
 Content-Type: application/json
 
 ###
 
-GET http://localhost:8080/api/users/all
+GET http://{{host}}:{{port}}/api/users/all
 Accept: application/json
 
 

@@ -42,6 +42,7 @@ public class UserController {
     @GetMapping("login")
     public ResponseEntity<?> authenticate(Principal principal) {
         if (principal == null) {
+            System.out.println("login controller srtarted...");
             //This should be ok http status because this will be used for logout path.
             return ResponseEntity.ok(principal);
         }
