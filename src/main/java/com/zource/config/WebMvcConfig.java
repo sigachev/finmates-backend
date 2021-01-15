@@ -35,10 +35,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         argumentResolvers.add(new DTOModelMapper(objectMapper, entityManager));
     }
 
-    @Bean
-    public ModelMapper modelMapper() {
-        return new ModelMapper();
-    }
 
     @Bean(name = "multipartResolver")
     public CommonsMultipartResolver commonsMultipartResolver() {

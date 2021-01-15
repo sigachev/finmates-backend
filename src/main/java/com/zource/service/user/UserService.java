@@ -17,4 +17,6 @@ public interface UserService {
 
     List<User> findAllUsers();
 
+ /*   User updateGeneralInfo(User user);*/
+
 }

@@ -1,7 +1,6 @@
 package com.zource.model;
 
 import com.fasterxml.jackson.annotation.*;
-import com.zource.model.jsonViews.BrandView;
 import com.zource.model.jsonViews.ProductView;
 import lombok.Getter;
 import lombok.Setter;
@@ -43,7 +42,7 @@ public class Brand {
     private boolean featured;
 
     @OneToMany(mappedBy = "brand", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonView(BrandView.Full.class)
+   /* @JsonView(UserView.Full.class)*/
     private Set<Product> products = new HashSet<>();
 
     @OneToMany(mappedBy = "brand", fetch = FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
