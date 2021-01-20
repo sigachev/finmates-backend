@@ -33,7 +33,7 @@ public class UserController {
     @PostMapping("registration")
     @JsonView(value = View.UserView.NoPassword.class)
     public ResponseEntity<?> register(@RequestBody User user) {
-        if (userService.findByUsername(user.getUsername()) != null) {
+        if (userService.findByEmail(user.getEmail()) != null) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
         user.setRole(Role.USER);
@@ -55,13 +55,15 @@ public class UserController {
     }
 
     @GetMapping("login")
-    @JsonView(value = View.UserView.NoPassword.class)
+
     public ResponseEntity<?> authenticate(Principal principal) {
+
         if (principal == null) {
             System.out.println("login controller started...");
             //This should be ok http status because this will be used for logout path.
             return ResponseEntity.ok(principal);
         }
+
         UsernamePasswordAuthenticationToken authenticationToken = (UsernamePasswordAuthenticationToken) principal;
         User user = userService.findByUsername(authenticationToken.getName());
         user.setToken(jwtTokenProvider.generateToken(authenticationToken));
@@ -80,10 +82,7 @@ public class UserController {
         return new ResponseEntity(userService.findByUsername(username) == null ? false : true, HttpStatus.OK);
     }
 
-    /*    @GetMapping("/api/user/check/email/{email}")
-        public ResponseEntity<?> checkIfEmailExists(@PathVariable String email) {
-            return new ResponseEntity(userService.findByEmail(email) == null ? false : true, HttpStatus.OK);
-        }*/
+
     @PutMapping("user/check/email")
     @JsonView(value = View.UserView.NoPassword.class)
     public ResponseEntity<?> checkIfEmailExists(@RequestBody String email) {

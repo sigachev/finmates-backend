@@ -12,6 +12,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -29,21 +30,17 @@ public class User implements Serializable {
     private Long id;
 
     @Column(name = "first_name")
-    @NotNull(message = "Name may not be null")
-    @NotEmpty(message = "Name may not be empty")
+    @NotBlank(message = "First name field can not be empty or missed")
     @JsonView(value = { View.UserView.NoPassword.class })
     private String firstName;
 
     @Column(name = "last_name")
-    @NotNull(message = "Last name may not be null")
-    @NotEmpty(message = "Last name may not be empty")
+    @NotBlank(message = "Last name field can not be empty or missed")
     @JsonView(value = { View.UserView.NoPassword.class })
     private String lastName;
 
 
     @Column(name="username", unique = true)
-    @NotNull(message = "Username may not be null")
-    @NotEmpty(message = "Username may not be empty")
     @JsonView(value = { View.UserView.NoPassword.class })
     private String username;
 

@@ -59,7 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().permitAll()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/api/logout", "POST")).and()
                 //login form and path
-                .formLogin().loginPage("/api/login").and()
+                .formLogin().loginPage("/api/login").usernameParameter("email").and()
                 //enable basic authentication. Http header: basis username:password
                 .httpBasic().and()
                 //Cross side request forgery.

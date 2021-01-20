@@ -12,4 +12,9 @@ GET http://{{host}}:{{port}}/api/users/all
 Accept: application/json
 
 
+
+###
+GET http://{{host}}:{{port}}/api/username
+
+
 ###
