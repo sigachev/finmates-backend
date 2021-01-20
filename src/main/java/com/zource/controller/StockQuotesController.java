@@ -1,8 +1,5 @@
 package com.zource.controller;
 
-import com.zource.DTO.ProductDTO;
-import com.zource.exceptions.product.ProductNotFoundException;
-import com.zource.model.Product;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,9 +16,7 @@ import java.math.BigDecimal;
 public class StockQuotesController {
 
     @GetMapping(value="/api/stock/{symbol}")
-
     @Transactional(readOnly = true)
-
     public ResponseEntity getById(@PathVariable(value = "symbol", required = true) String symbol) throws IOException {
 
 
@@ -38,9 +33,18 @@ public class StockQuotesController {
         System.out.println(tesla.getHistory());
 
 
-
-
         return new ResponseEntity(stock.getHistory().toString(), HttpStatus.OK);
+
+    }
+
+
+    @GetMapping(value = "/api/stock/{symbol}/price")
+    @Transactional(readOnly = true)
+    public ResponseEntity getStockPrice(@PathVariable(value = "symbol", required = true) String symbol) throws IOException {
+
+        Stock stock = YahooFinance.get(symbol);
+
+        return new ResponseEntity(stock.getQuote().getPrice(), HttpStatus.OK);
 
     }
 
