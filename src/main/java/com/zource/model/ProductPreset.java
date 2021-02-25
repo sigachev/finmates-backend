@@ -1,14 +1,10 @@
 package com.zource.model;
 
 import com.fasterxml.jackson.annotation.*;
-import com.zource.DTO.resolvers.EntityIdResolver;
-import com.zource.model.jsonViews.ProductView;
 import lombok.Data;
-import lombok.Value;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
@@ -49,7 +45,7 @@ public class ProductPreset {
             scope = Brand.class)
     @JsonIdentityReference(alwaysAsId = true)*/
     @JsonIgnoreProperties({"description", "type", "enabled", "featured"})
-    private Brand brand;
+    private Stock brand;
 
     @Column(name = "active", nullable = true, columnDefinition = "TINYINT", length = 1)
     @ColumnDefault("0")

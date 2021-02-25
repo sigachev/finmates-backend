@@ -5,7 +5,9 @@
 
 package com.zource.model;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.zource.model.jsonViews.CategoryView;
 import lombok.Getter;
 import lombok.Setter;
@@ -55,9 +57,9 @@ public class Category {
     private Set<Category> childCategories = new HashSet<>();
 
     @JsonView(CategoryView.Children.class)
-    @ManyToOne(targetEntity = Brand.class)
+    @ManyToOne(targetEntity = Stock.class)
     @JoinColumn(name = "brand_id")
-    private Brand brand;
+    private Stock brand;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "categories", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

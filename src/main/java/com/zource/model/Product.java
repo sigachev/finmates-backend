@@ -1,10 +1,11 @@
 package com.zource.model;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.zource.model.jsonViews.ProductView;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -70,7 +71,7 @@ public class Product {
     @JsonIdentityReference(alwaysAsId = true)*/
     @JsonProperty("brand")
     @JsonView(ProductView.Short.class)
-    private Brand brand;
+    private Stock brand;
 
 
 

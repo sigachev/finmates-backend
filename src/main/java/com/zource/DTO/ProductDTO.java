@@ -1,15 +1,17 @@
 package com.zource.DTO;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.zource.DTO.resolvers.EntityIdResolver;
-import com.zource.model.Brand;
 import com.zource.model.Product;
 import com.zource.model.ProductImage;
+import com.zource.model.Stock;
 import com.zource.model.UnitOfMeasure;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -51,9 +53,9 @@ public class ProductDTO {
             generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id",
             resolver = EntityIdResolver.class,
-            scope = Brand.class)
+            scope = Stock.class)
     @JsonIdentityReference(alwaysAsId = true)
-    private Brand brand;
+    private Stock brand;
 
     private List<ProductImageDTO> images = new ArrayList<>();
 
